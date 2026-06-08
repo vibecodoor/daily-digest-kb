@@ -48,8 +48,8 @@ reads and acts on.
 │   ├── daily-ai-digest.md   # the digest spec: sources, protocol, output shape
 │   ├── implicit-intake.md   # absorb a link/article/thread/video/paste
 │   └── repo-intake.md       # absorb a GitHub repo
-├── .claude/skills/
-│   └── daily-digest/        # bundled launcher skill — auto-found by Claude Code
+├── skills/
+│   └── daily-digest/        # portable SKILL.md launcher — works with any agent
 │       └── SKILL.md
 ├── templates/          # per-category entry templates (the shape of each KB file)
 ├── digests/            # runs.md ledger (append-only) + optional digest archive
@@ -97,23 +97,23 @@ run the AI / vibe-coding digest.
 
 Pick whichever fits how you work. All three drive the same engine.
 
-### 1. As a skill (one command)
+### 1. As a skill
 
-The repo **ships the skill ready to use** at `.claude/skills/daily-digest/` —
-nothing to install. Open the repo in **Claude Code** and run:
+The repo ships a portable launcher at `skills/daily-digest/SKILL.md` — a standard
+`SKILL.md` that **any agent** (Claude Code, Codex, Cursor, Gemini CLI, …) can read
+and run. Just tell your agent **"run the daily digest"** and it follows the skill:
+scouts sources, delivers today's digest, logs a row to `digests/runs.md`, and
+promotes durable insights into `kb/`.
 
+The skill ships *inside* the repo and operates on its own workflow files, so it's
+**not** installed via `npx` or a registry — it travels with the template.
+
+**Optional — Claude Code slash command.** For a `/daily-digest` shortcut, copy the
+skill into Claude Code's project-skill folder once (other agents don't need this):
+
+```bash
+mkdir -p .claude/skills && cp -r skills/daily-digest .claude/skills/   # Windows: just copy the folder
 ```
-/daily-digest
-```
-
-or just tell the agent: **"run the daily digest"**. It reads the workflow, scouts
-sources, delivers today's digest, logs a row to `digests/runs.md`, and promotes
-durable insights into `kb/`.
-
-> The skill lives inside the repo (it operates on the repo's own workflow files),
-> so it is **not** installed separately via `npx` or a registry — it travels with
-> the template. Agents without a slash-command system (Codex, Cursor, …) use
-> modes 2-3 below; same engine.
 
 ### 2. As a routine / scheduled automation (hands-off, daily)
 

@@ -9,8 +9,9 @@ Thin launcher for the daily digest. The full specification (sources, protocol,
 output shape) lives in `workflows/daily-ai-digest.md`. This skill does not
 duplicate it — it runs it.
 
-> Paths below are relative to the **repository root** (the project you have open),
-> not to this file. Read them with your file tools as-is.
+> A portable `SKILL.md` — any agent (Claude Code, Codex, Cursor, Gemini CLI, …)
+> can read and run it. Paths below are relative to the **repository root** (the
+> project you have open), not to this file. Read them with your file tools as-is.
 
 ## When to use
 
