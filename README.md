@@ -48,8 +48,8 @@ reads and acts on.
 │   ├── daily-ai-digest.md   # the digest spec: sources, protocol, output shape
 │   ├── implicit-intake.md   # absorb a link/article/thread/video/paste
 │   └── repo-intake.md       # absorb a GitHub repo
-├── skills/
-│   └── daily-digest/        # one-command launcher for the digest
+├── .claude/skills/
+│   └── daily-digest/        # bundled launcher skill — auto-found by Claude Code
 │       └── SKILL.md
 ├── templates/          # per-category entry templates (the shape of each KB file)
 ├── digests/            # runs.md ledger (append-only) + optional digest archive
@@ -63,16 +63,31 @@ reads and acts on.
 You need an AI coding agent with file access (Claude Code, Codex CLI, Cursor,
 Gemini CLI, etc.).
 
-**Get the template** — use GitHub's *Use this template* button, or:
+**1. Get the template** — pick one:
 
 ```bash
+# A) GitHub "Use this template" button → creates your own repo (no terminal)
+
+# B) copy the files without git history (needs Node):
 npx degit vibecodoor/daily-digest-kb my-digest-kb
-cd my-digest-kb
+
+# C) plain clone, no Node required:
+git clone https://github.com/vibecodoor/daily-digest-kb.git my-digest-kb
 ```
 
-**Point it at your agent.** Open the folder as your project. `CLAUDE.md`
+Then `cd my-digest-kb`.
+
+**2. Open it in your agent.** Open the folder as your project. `CLAUDE.md`
 (Claude Code) and `AGENTS.md` (Codex, Cursor, Gemini CLI, …) auto-load on session
-start and point the agent to `INSTRUCTIONS.md` — it knows the rest.
+start and point the agent to `INSTRUCTIONS.md` — it knows the rest. Nothing else
+to install.
+
+**3. Or just tell your agent** — paste this on the first message:
+
+```text
+This project is an AI-operated knowledge base. Read INSTRUCTIONS.md and follow it.
+To produce today's digest, follow workflows/daily-ai-digest.md.
+```
 
 **(Optional) Adapt the topic.** Edit `workflows/daily-ai-digest.md` →
 `Research Focus` and `Durable Alpha Sources` to your domain. Leave it as-is to
@@ -84,9 +99,8 @@ Pick whichever fits how you work. All three drive the same engine.
 
 ### 1. As a skill (one command)
 
-The repo ships a launcher skill at `skills/daily-digest/`. Make it available to
-your agent (for Claude Code, copy or symlink it into `.claude/skills/`, or load
-the repo as a plugin), then:
+The repo **ships the skill ready to use** at `.claude/skills/daily-digest/` —
+nothing to install. Open the repo in **Claude Code** and run:
 
 ```
 /daily-digest
@@ -95,6 +109,11 @@ the repo as a plugin), then:
 or just tell the agent: **"run the daily digest"**. It reads the workflow, scouts
 sources, delivers today's digest, logs a row to `digests/runs.md`, and promotes
 durable insights into `kb/`.
+
+> The skill lives inside the repo (it operates on the repo's own workflow files),
+> so it is **not** installed separately via `npx` or a registry — it travels with
+> the template. Agents without a slash-command system (Codex, Cursor, …) use
+> modes 2-3 below; same engine.
 
 ### 2. As a routine / scheduled automation (hands-off, daily)
 
