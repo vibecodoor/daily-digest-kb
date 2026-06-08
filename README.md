@@ -140,6 +140,41 @@ Open the project and paste the *Simplified Automation Prompt* from
 This is also how you do ad-hoc intake: just send the agent a link or a repo and
 it follows `implicit-intake.md` / `repo-intake.md`.
 
+## Using it as a knowledge base
+
+The daily digest is only *one* way knowledge gets in. The other is **you** — hand
+the agent anything and it files the durable parts for you. It distills, it
+doesn't hoard: every input is scored, the reusable signal is extracted, and it's
+routed into the right `kb/` bucket (via `MAP.md`, shaped by `templates/`).
+
+**Drop in material.** Send the agent a link, article, thread, video, or pasted
+notes — no command needed. It follows `workflows/implicit-intake.md`: scores the
+material, keeps only what's durable, and updates the best existing note (or
+creates one). Hand it a GitHub repo instead and it switches to
+`workflows/repo-intake.md`, mining architecture, workflows, and gotchas.
+
+Just say things like:
+
+```text
+Save what's useful from this: <link or pasted text>
+Study this repo and add what's worth stealing: <github url>
+Add a pattern: <your rule of thumb>          → files into kb/patterns/
+Add this prompt: <prompt>                     → files into kb/prompts/
+Add a tool: <name> — <what it does>           → files into kb/tools/catalog.md
+Add project <name>                            → new card in kb/projects/
+```
+
+**Pull it back out.** Ask the KB like a second brain:
+
+```text
+What did I save about MCP?
+What should I try for evals?
+What patterns do I have on context engineering?
+```
+
+It searches the canonical surfaces first (via `MAP.md`), so retrieval stays cheap
+as the KB grows. Full command list lives in `INSTRUCTIONS.md`.
+
 ## Adapting it to your own data
 
 - **Change the domain** → edit `Research Focus` + `Durable Alpha Sources` in
