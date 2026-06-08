@@ -63,15 +63,24 @@ reads and acts on.
 You need an AI coding agent with file access (Claude Code, Codex CLI, Cursor,
 Gemini CLI, etc.).
 
-**1. Get the template** — pick one:
+**1. Get the template.**
+
+**Let your agent install it** — paste this into any coding agent with shell
+access (Claude Code, Codex CLI, Cursor, Gemini CLI, …):
+
+```text
+Clone https://github.com/vibecodoor/daily-digest-kb.git into a new folder named
+daily-digest-kb, open that folder as the project, then read INSTRUCTIONS.md and
+follow it.
+```
+
+Or do it by hand:
 
 ```bash
-# A) GitHub "Use this template" button → creates your own repo (no terminal)
-
-# B) copy the files without git history (needs Node):
+# A) copy the files without git history (needs Node):
 npx degit vibecodoor/daily-digest-kb my-digest-kb
 
-# C) plain clone, no Node required:
+# B) plain clone, no Node required:
 git clone https://github.com/vibecodoor/daily-digest-kb.git my-digest-kb
 ```
 
